@@ -1,0 +1,94 @@
+<section class="settings-shell" aria-label="Scheduled ad finder settings">
+  <header class="settings-header">
+    <p class="eyebrow">Automation Settings</p>
+    <h1>Schedule Ad Finder Jobs</h1>
+    <p>
+      Configure recurring scans across a folder tree so AdFinder automatically processes new recordings,
+      finds known ads, and exports results for your analytics team.
+    </p>
+  </header>
+
+  <form class="settings-form">
+    <div class="form-grid">
+      <label>
+        Upload/source folder
+        <input type="text" placeholder="/data/recordings/daily-captures" />
+      </label>
+
+      <label>
+        Output folder for results
+        <input type="text" placeholder="/data/adfinder/results" />
+      </label>
+
+      <label>
+        Time window rule
+        <select>
+          <option>Find related ads within ±5 minutes</option>
+          <option>Strict exact matches only</option>
+          <option>Custom window per job profile</option>
+        </select>
+      </label>
+
+      <label>
+        Check interval for new files
+        <select>
+          <option>Every 5 minutes</option>
+          <option>Every 15 minutes</option>
+          <option>Every 30 minutes</option>
+          <option>Hourly</option>
+          <option>Daily</option>
+        </select>
+      </label>
+
+      <label>
+        Job start time
+        <input type="time" value="00:15" />
+      </label>
+
+      <label>
+        File patterns to include
+        <input type="text" placeholder="*.mp4, *.wav, *.mxf" />
+      </label>
+
+      <label>
+        Subfolder depth
+        <select>
+          <option>Scan all nested folders</option>
+          <option>Only top-level folder</option>
+          <option>Limit to 2 levels</option>
+          <option>Limit to 3 levels</option>
+        </select>
+      </label>
+
+      <label>
+        Duplicate handling
+        <select>
+          <option>Skip already processed files</option>
+          <option>Reprocess all files</option>
+          <option>Reprocess only changed files</option>
+        </select>
+      </label>
+
+      <label>
+        Alert email (optional)
+        <input type="email" placeholder="ops-team@analyticsco.com" />
+      </label>
+
+      <label>
+        Max concurrent jobs
+        <input type="number" min="1" max="20" value="4" />
+      </label>
+    </div>
+
+    <div class="toggle-row">
+      <label><input type="checkbox" checked /> Enable scheduled run</label>
+      <label><input type="checkbox" checked /> Generate summary report after each run</label>
+      <label><input type="checkbox" /> Notify on failed processing</label>
+    </div>
+
+    <div class="actions">
+      <button type="button" class="secondary">Test configuration</button>
+      <button type="button" class="primary">Save schedule</button>
+    </div>
+  </form>
+</section>
