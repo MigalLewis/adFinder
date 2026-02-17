@@ -2,8 +2,8 @@
   <div class="brand">AdFinder</div>
 
   <ul class="menu-links">
-    <li><a href="#" aria-current="page">Dashboard</a></li>
-    <li><a href="#">Settings</a></li>
+    <li><a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Dashboard</a></li>
+    <li><a routerLink="/settings" routerLinkActive="active">Settings</a></li>
   </ul>
 
   <div class="auth-actions">

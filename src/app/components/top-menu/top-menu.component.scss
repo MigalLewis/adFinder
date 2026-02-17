@@ -34,7 +34,7 @@
     border-radius: 0.55rem;
 
     &:hover,
-    &[aria-current='page'] {
+    &.active {
       background: rgba(110, 175, 223, 0.2);
     }
   }
