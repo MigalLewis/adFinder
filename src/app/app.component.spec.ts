@@ -21,11 +21,13 @@ describe('AppComponent', () => {
     expect(app.findings.length).toBeGreaterThan(0);
   });
 
-  it('should render the analytics console title', () => {
+  it('should render separated workflow components', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
 
-    expect(compiled.querySelector('h1')?.textContent).toContain('AdFinder Analytics Console');
+    expect(compiled.querySelector('app-recording-source')).toBeTruthy();
+    expect(compiled.querySelector('app-reference-ad-search')).toBeTruthy();
+    expect(compiled.querySelector('app-detection-results')).toBeTruthy();
   });
 });

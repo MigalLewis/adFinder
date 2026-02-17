@@ -1,17 +1,13 @@
 import { Component } from '@angular/core';
-
-interface AdFinding {
-  timestamp: string;
-  title: string;
-  confidence: number;
-  contextWindow: string;
-  channel: string;
-  status: 'Matched reference ad' | 'Related ad in ±5 minute window';
-}
+import { DetectionResultsComponent } from './components/detection-results/detection-results.component';
+import { RecordingSourceComponent } from './components/recording-source/recording-source.component';
+import { ReferenceAdSearchComponent } from './components/reference-ad-search/reference-ad-search.component';
+import { AdFinding } from './models/ad-finding.model';
 
 @Component({
   selector: 'app-root',
   standalone: true,
+  imports: [RecordingSourceComponent, ReferenceAdSearchComponent, DetectionResultsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

@@ -9,83 +9,9 @@
   </header>
 
   <section class="panel-grid" aria-label="Ad discovery workflow">
-    <article class="panel">
-      <h2>1. Recording source</h2>
-      <p>Choose an individual recording file or point to a folder containing multiple captures.</p>
-      <div class="input-stack">
-        <label class="upload-field">
-          <span>Upload recording</span>
-          <input type="file" accept="video/*,audio/*" />
-        </label>
-        <label class="upload-field">
-          <span>Upload folder</span>
-          <input type="file" webkitdirectory directory multiple />
-        </label>
-      </div>
-    </article>
-
-    <article class="panel">
-      <h2>2. Reference ad search</h2>
-      <p>Provide the known ad and a search profile. Backend handles matching and context analysis.</p>
-      <div class="input-stack">
-        <label>
-          Reference ad name
-          <input type="text" placeholder="e.g. Spark Mobile - Unlimited Plan" />
-        </label>
-        <label>
-          Channel / campaign tag
-          <input type="text" placeholder="Optional filter" />
-        </label>
-        <label>
-          Time window rule
-          <select>
-            <option>Find related ads within ±5 minutes</option>
-            <option>Strict exact matches only</option>
-          </select>
-        </label>
-      </div>
-      <button type="button">Run detection</button>
-    </article>
+    <app-recording-source />
+    <app-reference-ad-search />
   </section>
 
-  <section class="results" aria-label="Detection output">
-    <div class="results-header">
-      <h2>Detection results</h2>
-      <span class="badge">{{ findings.length }} records</span>
-    </div>
-
-    <div class="table-wrapper">
-      <table>
-        <thead>
-          <tr>
-            <th>Timestamp</th>
-            <th>Ad title</th>
-            <th>Channel</th>
-            <th>Confidence</th>
-            <th>Context window</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          @for (finding of findings; track finding.timestamp + finding.title) {
-            <tr>
-              <td>{{ finding.timestamp }}</td>
-              <td>{{ finding.title }}</td>
-              <td>{{ finding.channel }}</td>
-              <td>{{ finding.confidence }}%</td>
-              <td>{{ finding.contextWindow }}</td>
-              <td>
-                <span
-                  class="status-pill"
-                  [class.related]="finding.status === 'Related ad in ±5 minute window'"
-                >
-                  {{ finding.status }}
-                </span>
-              </td>
-            </tr>
-          }
-        </tbody>
-      </table>
-    </div>
-  </section>
+  <app-detection-results [findings]="findings" />
 </main>
