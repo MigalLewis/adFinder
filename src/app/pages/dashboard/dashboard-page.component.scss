@@ -32,7 +32,11 @@
   margin-top: 1.5rem;
   display: grid;
   gap: 1rem;
-  grid-template-columns: 1.2fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+}
+
+.last-detection {
+  grid-column: 1 / -1; 
 }
 
 .card {
