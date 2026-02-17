@@ -1,0 +1,13 @@
+<nav class="top-menu" aria-label="Primary navigation">
+  <div class="brand">AdFinder</div>
+
+  <ul class="menu-links">
+    <li><a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Dashboard</a></li>
+    <li><a routerLink="/settings" routerLinkActive="active">Settings</a></li>
+  </ul>
+
+  <div class="auth-actions">
+    <button type="button" class="secondary">Sign in</button>
+    <button type="button" class="primary">Logout</button>
+  </div>
+</nav>

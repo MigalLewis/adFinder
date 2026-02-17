@@ -1,0 +1,15 @@
+<header class="hero">
+  <p class="eyebrow">Broadcast Intelligence Platform</p>
+  <h1>{{ title }}</h1>
+  <p class="hero-copy">
+    Upload recordings or select a source folder, then use a known ad as a reference to discover
+    matching placements and all related ad breaks within ±5 minutes.
+  </p>
+</header>
+
+<section class="panel-grid" aria-label="Ad discovery workflow">
+  <app-recording-source />
+  <app-reference-ad-search />
+</section>
+
+<app-detection-results [findings]="findings" />
