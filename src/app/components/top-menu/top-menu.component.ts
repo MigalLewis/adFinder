@@ -15,8 +15,8 @@ export class TopMenuComponent {
 
   readonly signedIn = this.authService.signedIn;
 
-  signOut(): void {
-    this.authService.signOut();
-    this.router.navigate(['/landing']);
+  async signOut(): Promise<void> {
+    await this.authService.signOut();
+    await this.router.navigate(['/landing']);
   }
 }

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { FirestoreDataService } from '../../core/firestore-data.service';
 
 interface SummaryReport {
   generatedAt: string;
@@ -23,9 +24,12 @@ interface DetectionPreview {
   styleUrl: './dashboard-page.component.scss'
 })
 export class DashboardPageComponent {
+  private readonly firestoreData = inject(FirestoreDataService);
+
   readonly title = 'AdFinder Analytics Console';
 
   detectionScope: 'all' | 'specific' = 'all';
+  detectionMessage = '';
 
   readonly summaryReports: SummaryReport[] = [
     {
@@ -47,6 +51,20 @@ export class DashboardPageComponent {
       adsDetected: 121
     }
   ];
+
+  async runDetection(): Promise<void> {
+    this.detectionMessage = '';
+
+    try {
+      await this.firestoreData.saveDetectionRun({
+        scope: this.detectionScope,
+        hasReferenceAudio: this.detectionScope === 'specific'
+      });
+      this.detectionMessage = 'Detection request saved to Firestore.';
+    } catch {
+      this.detectionMessage = 'Could not save detection request. Check Firebase configuration.';
+    }
+  }
 
   readonly detectionResults: DetectionPreview[] = [
     {

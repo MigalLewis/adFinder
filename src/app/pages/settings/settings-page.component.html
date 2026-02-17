@@ -12,17 +12,17 @@
     <div class="form-grid">
       <label>
         Upload/source folder
-        <input type="text" placeholder="/data/recordings/daily-captures" />
+        <input type="text" placeholder="/data/recordings/daily-captures" [(ngModel)]="sourceFolder" name="sourceFolder" />
       </label>
 
       <label>
         Output folder for results
-        <input type="text" placeholder="/data/adfinder/results" />
+        <input type="text" placeholder="/data/adfinder/results" [(ngModel)]="outputFolder" name="outputFolder" />
       </label>
 
       <label>
         Time window rule
-        <select>
+        <select [(ngModel)]="timeWindowRule" name="timeWindowRule">
           <option>Find related ads within ±5 minutes</option>
           <option>Strict exact matches only</option>
           <option>Custom window per job profile</option>
@@ -31,7 +31,7 @@
 
       <label>
         Check interval for new files
-        <select>
+        <select [(ngModel)]="checkInterval" name="checkInterval">
           <option>Every 5 minutes</option>
           <option>Every 15 minutes</option>
           <option>Every 30 minutes</option>
@@ -88,7 +88,10 @@
 
     <div class="actions">
       <button type="button" class="secondary">Test configuration</button>
-      <button type="button" class="primary">Save schedule</button>
+      <button type="button" class="primary" [disabled]="isSaving" (click)="saveSchedule()">{{ isSaving ? 'Saving...' : 'Save schedule' }}</button>
     </div>
+    @if (statusMessage) {
+      <p class="status-message">{{ statusMessage }}</p>
+    }
   </form>
 </section>

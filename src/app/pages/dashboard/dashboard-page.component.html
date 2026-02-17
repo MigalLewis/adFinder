@@ -49,7 +49,11 @@
       }
     </div>
 
-    <button type="button" class="primary-action">Run detection</button>
+    <button type="button" class="primary-action" (click)="runDetection()">Run detection</button>
+
+    @if (detectionMessage) {
+      <p class="status-message">{{ detectionMessage }}</p>
+    }
   </article>
 
   <article class="card">
@@ -71,7 +75,7 @@
     </ul>
   </article>
 
-  <article class="card last-detection">
+  <article class="card">
     <div class="card-header">
       <h2>Last detection results</h2>
       <a href="#" class="view-all">View all detection results</a>

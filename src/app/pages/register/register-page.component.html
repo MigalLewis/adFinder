@@ -5,19 +5,27 @@
 
     <label>
       Company name
-      <input type="text" placeholder="Analytics Co." />
+      <input type="text" placeholder="Analytics Co." [(ngModel)]="company" name="company" />
     </label>
 
     <label>
       Work email
-      <input type="email" placeholder="name@analyticsco.com" />
+      <input type="email" placeholder="name@analyticsco.com" [(ngModel)]="email" name="email" />
     </label>
 
     <label>
       Password
-      <input type="password" placeholder="Create a password" />
+      <input type="password" placeholder="Create a password" [(ngModel)]="password" name="password" />
     </label>
 
-    <button type="button" (click)="register()">Create account</button>
+    @if (errorMessage) {
+      <p class="error">{{ errorMessage }}</p>
+    }
+
+    <button type="button" [disabled]="isSubmitting" (click)="register()">
+      {{ isSubmitting ? 'Creating account...' : 'Create account' }}
+    </button>
+
+    <a class="alt-link" routerLink="/sign-in">Already have an account? Sign in</a>
   </article>
 </section>

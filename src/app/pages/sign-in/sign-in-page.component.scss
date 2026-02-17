@@ -53,5 +53,23 @@
     cursor: pointer;
     background: #123753;
     color: #eeeff1;
+
+    &:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+    }
   }
+}
+
+.error {
+  color: #b32727;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.alt-link {
+  color: #123753;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
 }

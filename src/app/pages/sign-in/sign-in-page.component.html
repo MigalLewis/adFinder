@@ -5,14 +5,22 @@
 
     <label>
       Work email
-      <input type="email" placeholder="name@analyticsco.com" />
+      <input type="email" placeholder="name@analyticsco.com" [(ngModel)]="email" name="email" />
     </label>
 
     <label>
       Password
-      <input type="password" placeholder="••••••••" />
+      <input type="password" placeholder="••••••••" [(ngModel)]="password" name="password" />
     </label>
 
-    <button type="button" (click)="signIn()">Sign in</button>
+    @if (errorMessage) {
+      <p class="error">{{ errorMessage }}</p>
+    }
+
+    <button type="button" [disabled]="isSubmitting" (click)="signIn()">
+      {{ isSubmitting ? 'Signing in...' : 'Sign in' }}
+    </button>
+
+    <a class="alt-link" routerLink="/register">Need an account? Register</a>
   </article>
 </section>
