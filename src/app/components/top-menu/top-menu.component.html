@@ -1,13 +1,23 @@
 <nav class="top-menu" aria-label="Primary navigation">
-  <div class="brand">AdFinder</div>
+  <a class="brand" routerLink="/landing">AdFinder</a>
 
-  <ul class="menu-links">
-    <li><a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Dashboard</a></li>
-    <li><a routerLink="/settings" routerLinkActive="active">Settings</a></li>
-  </ul>
+  @if (signedIn()) {
+    <ul class="menu-links">
+      <li><a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Dashboard</a></li>
+      <li><a routerLink="/settings" routerLinkActive="active">Settings</a></li>
+    </ul>
 
-  <div class="auth-actions">
-    <button type="button" class="secondary">Sign in</button>
-    <button type="button" class="primary">Logout</button>
-  </div>
+    <div class="auth-actions">
+      <button type="button" class="primary" (click)="signOut()">Sign out</button>
+    </div>
+  } @else {
+    <ul class="menu-links">
+      <li><a routerLink="/landing" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Overview</a></li>
+    </ul>
+
+    <div class="auth-actions">
+      <a class="secondary" routerLink="/sign-in">Sign in</a>
+      <a class="primary" routerLink="/register">Register</a>
+    </div>
+  }
 </nav>

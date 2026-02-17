@@ -15,6 +15,7 @@
   font-weight: 800;
   letter-spacing: 0.02em;
   color: #123753;
+  text-decoration: none;
 }
 
 .menu-links {
@@ -44,7 +45,10 @@
   display: flex;
   gap: 0.5rem;
 
+  .secondary,
+  .primary,
   button {
+    text-decoration: none;
     border: 0;
     border-radius: 0.6rem;
     padding: 0.5rem 0.8rem;
