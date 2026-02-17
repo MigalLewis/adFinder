@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { DetectionResultsComponent } from './components/detection-results/detection-results.component';
 import { RecordingSourceComponent } from './components/recording-source/recording-source.component';
 import { ReferenceAdSearchComponent } from './components/reference-ad-search/reference-ad-search.component';
+import { TopMenuComponent } from './components/top-menu/top-menu.component';
 import { AdFinding } from './models/ad-finding.model';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RecordingSourceComponent, ReferenceAdSearchComponent, DetectionResultsComponent],
+  imports: [TopMenuComponent, RecordingSourceComponent, ReferenceAdSearchComponent, DetectionResultsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

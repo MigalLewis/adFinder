@@ -26,8 +26,13 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
 
+    expect(compiled.querySelector('app-top-menu')).toBeTruthy();
     expect(compiled.querySelector('app-recording-source')).toBeTruthy();
     expect(compiled.querySelector('app-reference-ad-search')).toBeTruthy();
     expect(compiled.querySelector('app-detection-results')).toBeTruthy();
+    expect(compiled.textContent).toContain('Dashboard');
+    expect(compiled.textContent).toContain('Settings');
+    expect(compiled.textContent).toContain('Sign in');
+    expect(compiled.textContent).toContain('Logout');
   });
 });

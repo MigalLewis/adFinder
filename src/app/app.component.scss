@@ -19,6 +19,7 @@
 }
 
 .hero {
+  margin-top: 1rem;
   background: radial-gradient(circle at top right, rgba(110, 175, 223, 0.3), rgba(238, 239, 241, 0.7));
   border: 1px solid rgba(18, 55, 83, 0.15);
   border-radius: 1.25rem;
@@ -60,6 +61,7 @@
   }
 
   .hero {
+    margin-top: 1rem;
     padding: 1rem;
   }
 }
