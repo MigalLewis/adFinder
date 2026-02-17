@@ -1,0 +1,75 @@
+.results {
+  margin-top: 1rem;
+  padding: 1.25rem;
+  background: #fff;
+  border-radius: 1rem;
+  border: 1px solid rgba(18, 55, 83, 0.12);
+  box-shadow: 0 10px 30px rgba(18, 55, 83, 0.06);
+}
+
+.results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h2 {
+    margin: 0;
+    color: #123753;
+    font-size: 1.25rem;
+  }
+}
+
+.badge {
+  background: rgba(110, 175, 223, 0.18);
+  color: #123753;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 0.3rem 0.75rem;
+  font-size: 0.8rem;
+}
+
+.table-wrapper {
+  margin-top: 0.9rem;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 760px;
+
+  th,
+  td {
+    text-align: left;
+    padding: 0.75rem;
+    border-bottom: 1px solid rgba(18, 55, 83, 0.12);
+    font-size: 0.9rem;
+  }
+
+  th {
+    color: #49677f;
+    font-weight: 700;
+    background: rgba(238, 239, 241, 0.75);
+  }
+}
+
+.status-pill {
+  display: inline-block;
+  padding: 0.28rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: rgba(18, 55, 83, 0.12);
+  color: #123753;
+
+  &.related {
+    background: rgba(110, 175, 223, 0.22);
+    color: #0f4467;
+  }
+}
+
+@media (max-width: 680px) {
+  .results {
+    padding: 1rem;
+  }
+}
