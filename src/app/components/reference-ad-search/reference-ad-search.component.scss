@@ -1,0 +1,63 @@
+.panel {
+  background: #fff;
+  border-radius: 1rem;
+  border: 1px solid rgba(18, 55, 83, 0.12);
+  box-shadow: 0 10px 30px rgba(18, 55, 83, 0.06);
+  padding: 1.25rem;
+
+  h2 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #123753;
+  }
+
+  p {
+    margin-top: 0.5rem;
+    color: #49677f;
+    font-size: 0.95rem;
+  }
+}
+
+.input-stack {
+  margin-top: 0.9rem;
+  display: grid;
+  gap: 0.75rem;
+
+  label {
+    display: grid;
+    gap: 0.35rem;
+    font-size: 0.85rem;
+    color: #11293d;
+    font-weight: 600;
+  }
+}
+
+input,
+select {
+  font: inherit;
+  border: 1px solid rgba(18, 55, 83, 0.22);
+  background: #fff;
+  border-radius: 0.6rem;
+  padding: 0.6rem 0.75rem;
+  color: #11293d;
+
+  &:focus {
+    outline: 2px solid rgba(110, 175, 223, 0.45);
+    border-color: #6eafdf;
+  }
+}
+
+button {
+  margin-top: 1rem;
+  border: 0;
+  border-radius: 0.7rem;
+  padding: 0.7rem 1rem;
+  background: #123753;
+  color: #eeeff1;
+  font-weight: 700;
+  cursor: pointer;
+
+  &:hover {
+    background: #0f2f46;
+  }
+}

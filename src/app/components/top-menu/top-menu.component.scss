@@ -1,0 +1,71 @@
+.top-menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 1rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(18, 55, 83, 0.16);
+  background: #ffffff;
+  box-shadow: 0 10px 24px rgba(18, 55, 83, 0.07);
+}
+
+.brand {
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #123753;
+}
+
+.menu-links {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  gap: 0.5rem;
+
+  a {
+    display: inline-block;
+    text-decoration: none;
+    color: #123753;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.55rem;
+
+    &:hover,
+    &[aria-current='page'] {
+      background: rgba(110, 175, 223, 0.2);
+    }
+  }
+}
+
+.auth-actions {
+  display: flex;
+  gap: 0.5rem;
+
+  button {
+    border: 0;
+    border-radius: 0.6rem;
+    padding: 0.5rem 0.8rem;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+  }
+
+  .secondary {
+    background: rgba(110, 175, 223, 0.2);
+    color: #123753;
+  }
+
+  .primary {
+    background: #123753;
+    color: #eeeff1;
+  }
+}
+
+@media (max-width: 760px) {
+  .top-menu {
+    flex-wrap: wrap;
+  }
+}

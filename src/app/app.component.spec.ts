@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppComponent],
+      imports: [AppComponent]
     }).compileComponents();
   });
 
@@ -14,16 +14,25 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'adFinder' title`, () => {
+  it('should expose seeded findings for preview output', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('adFinder');
+
+    expect(app.findings.length).toBeGreaterThan(0);
   });
 
-  it('should render title', () => {
+  it('should render separated workflow components', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, adFinder');
+
+    expect(compiled.querySelector('app-top-menu')).toBeTruthy();
+    expect(compiled.querySelector('app-recording-source')).toBeTruthy();
+    expect(compiled.querySelector('app-reference-ad-search')).toBeTruthy();
+    expect(compiled.querySelector('app-detection-results')).toBeTruthy();
+    expect(compiled.textContent).toContain('Dashboard');
+    expect(compiled.textContent).toContain('Settings');
+    expect(compiled.textContent).toContain('Sign in');
+    expect(compiled.textContent).toContain('Logout');
   });
 });
