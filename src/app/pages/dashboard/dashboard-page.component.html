@@ -1,0 +1,96 @@
+<header class="hero">
+  <p class="eyebrow">Broadcast Intelligence Platform</p>
+  <h1>{{ title }}</h1>
+  <p class="hero-copy">
+    Launch quick ad discovery, review recent reporting snapshots, and monitor the latest detections from
+    your automated or on-demand workflows.
+  </p>
+</header>
+
+<section class="dashboard-grid" aria-label="Dashboard quick actions and recents">
+  <article class="card quick-find">
+    <div class="card-header">
+      <h2>Quick find</h2>
+      <span class="chip">On-demand</span>
+    </div>
+
+    <div class="field-stack">
+      <label>
+        Upload recording
+        <input type="file" accept="video/*,audio/*" />
+      </label>
+
+      <label>
+        Time window rule
+        <select>
+          <option>Find related ads within ±5 minutes</option>
+          <option>Strict exact matches only</option>
+          <option>Custom rule profile</option>
+        </select>
+      </label>
+
+      <fieldset class="scope-fieldset">
+        <legend>Detection scope</legend>
+        <label>
+          <input type="radio" name="scope" value="all" [(ngModel)]="detectionScope" />
+          All ads
+        </label>
+        <label>
+          <input type="radio" name="scope" value="specific" [(ngModel)]="detectionScope" />
+          Specific ad
+        </label>
+      </fieldset>
+
+      @if (detectionScope === 'specific') {
+        <label>
+          Reference audio (required for specific ad)
+          <input type="file" accept="audio/*" />
+        </label>
+      }
+    </div>
+
+    <button type="button" class="primary-action" (click)="runDetection()">Run detection</button>
+
+    @if (detectionMessage) {
+      <p class="status-message">{{ detectionMessage }}</p>
+    }
+  </article>
+
+  <article class="card">
+    <div class="card-header">
+      <h2>Last summary reports</h2>
+      <a href="#" class="view-all">View all reports</a>
+    </div>
+
+    <ul class="list">
+      @for (report of summaryReports; track report.generatedAt + report.profile) {
+        <li>
+          <div>
+            <p class="list-title">{{ report.profile }}</p>
+            <p class="list-meta">{{ report.generatedAt }}</p>
+          </div>
+          <div class="list-stats">{{ report.recordingsProcessed }} files · {{ report.adsDetected }} ads</div>
+        </li>
+      }
+    </ul>
+  </article>
+
+  <article class="card">
+    <div class="card-header">
+      <h2>Last detection results</h2>
+      <a href="#" class="view-all">View all detection results</a>
+    </div>
+
+    <ul class="list">
+      @for (item of detectionResults; track item.timestamp + item.title) {
+        <li>
+          <div>
+            <p class="list-title">{{ item.title }}</p>
+            <p class="list-meta">{{ item.channel }} · {{ item.timestamp }}</p>
+          </div>
+          <div class="list-stats">{{ item.confidence }}% match</div>
+        </li>
+      }
+    </ul>
+  </article>
+</section>

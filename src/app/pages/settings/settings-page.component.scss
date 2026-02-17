@@ -1,0 +1,129 @@
+.settings-shell {
+  margin-top: 1rem;
+  background: #fff;
+  border-radius: 1rem;
+  border: 1px solid rgba(18, 55, 83, 0.12);
+  box-shadow: 0 12px 30px rgba(18, 55, 83, 0.07);
+  padding: 1.4rem;
+}
+
+.settings-header {
+  h1 {
+    margin: 0;
+    color: #123753;
+  }
+
+  p {
+    margin: 0.65rem 0 0;
+    color: #49677f;
+    line-height: 1.45;
+    max-width: 70ch;
+  }
+}
+
+.eyebrow {
+  margin: 0 0 0.5rem;
+  color: #49677f;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.75rem;
+}
+
+.settings-form {
+  margin-top: 1rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 0.85rem;
+
+  label {
+    display: grid;
+    gap: 0.35rem;
+    color: #11293d;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+}
+
+input,
+select {
+  font: inherit;
+  border: 1px solid rgba(18, 55, 83, 0.22);
+  background: #fff;
+  border-radius: 0.6rem;
+  padding: 0.6rem 0.75rem;
+  color: #11293d;
+
+  &:focus {
+    outline: 2px solid rgba(110, 175, 223, 0.45);
+    border-color: #6eafdf;
+  }
+}
+
+.toggle-row {
+  display: grid;
+  gap: 0.45rem;
+  margin-top: 1rem;
+
+  label {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.9rem;
+    color: #123753;
+    font-weight: 600;
+  }
+}
+
+.actions {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.55rem;
+
+  button {
+    border: 0;
+    border-radius: 0.6rem;
+    padding: 0.65rem 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+
+    &:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+    }
+  }
+
+  .secondary {
+    background: rgba(110, 175, 223, 0.2);
+    color: #123753;
+  }
+
+  .primary {
+    background: #123753;
+    color: #eeeff1;
+  }
+}
+
+@media (max-width: 680px) {
+  .settings-shell {
+    padding: 1rem;
+  }
+
+  .actions {
+    justify-content: stretch;
+
+    button {
+      flex: 1;
+    }
+  }
+}
+
+.status-message {
+  margin: 0.85rem 0 0;
+  color: #123753;
+  font-weight: 600;
+}

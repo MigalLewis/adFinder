@@ -1,0 +1,22 @@
+:host {
+  --cloud: #eeeff1;
+  --text-main: #11293d;
+
+  display: block;
+  min-height: 100vh;
+  background: linear-gradient(165deg, #f9fbfd 0%, var(--cloud) 100%);
+  color: var(--text-main);
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+
+.layout {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 3rem;
+}
+
+@media (max-width: 680px) {
+  .layout {
+    padding: 1.4rem 1rem 2rem;
+  }
+}
