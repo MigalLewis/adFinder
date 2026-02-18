@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/auth.service';
@@ -17,20 +17,21 @@ export class RegisterPageComponent {
   company = '';
   email = '';
   password = '';
-  isSubmitting = false;
-  errorMessage = '';
+  readonly isSubmitting = signal(false);
+  readonly errorMessage = signal('');
 
-  async register(): Promise<void> {
-    this.errorMessage = '';
-    this.isSubmitting = true;
+  register(email: string, password: string): void {
+    this.errorMessage.set('');
+    this.isSubmitting.set(true);
 
-    try {
-      await this.authService.register(this.email, this.password);
-      await this.router.navigate(['/dashboard']);
-    } catch {
-      this.errorMessage = 'Unable to register with these details. Please review and retry.';
-    } finally {
-      this.isSubmitting = false;
-    }
+    this.authService
+      .register(email, password)
+      .then(() => this.router.navigate(['/dashboard']))
+      .catch(() => {
+        this.errorMessage.set('Unable to register with these details. Please review and retry.');
+      })
+      .finally(() => {
+        this.isSubmitting.set(false);
+      });
   }
 }
