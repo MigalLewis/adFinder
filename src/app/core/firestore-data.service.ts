@@ -9,9 +9,21 @@ export interface ScheduleConfig {
   interval: string;
 }
 
+export interface UserInvitePayload {
+  email: string;
+  role: 'member' | 'admin';
+}
+
 @Injectable({ providedIn: 'root' })
 export class FirestoreDataService {
   constructor(private readonly firebaseService: FirebaseService) {}
+
+  async addUserInvite(payload: UserInvitePayload): Promise<void> {
+    await addDoc(collection(this.firebaseService.firestore, 'userInvites'), {
+      ...payload,
+      createdAt: serverTimestamp()
+    });
+  }
 
   async saveScheduleConfig(config: ScheduleConfig): Promise<void> {
     await addDoc(collection(this.firebaseService.firestore, 'scheduleConfigs'), {
