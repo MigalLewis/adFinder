@@ -2,6 +2,8 @@ import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FirestoreDataService } from '../../core/firestore-data.service';
 
+type SettingsTab = 'users' | 'schedule';
+
 @Component({
   selector: 'app-settings-page',
   standalone: true,
@@ -12,12 +14,43 @@ import { FirestoreDataService } from '../../core/firestore-data.service';
 export class SettingsPageComponent {
   private readonly firestoreData = inject(FirestoreDataService);
 
+  activeTab: SettingsTab = 'users';
+
   sourceFolder = '';
   outputFolder = '';
   timeWindowRule = 'Find related ads within ±5 minutes';
   checkInterval = 'Every 15 minutes';
   isSaving = false;
   statusMessage = '';
+
+  inviteEmail = '';
+  inviteRole: 'member' | 'admin' = 'member';
+  isInviting = false;
+  usersStatusMessage = '';
+
+  setActiveTab(tab: SettingsTab): void {
+    this.activeTab = tab;
+  }
+
+  async addUser(): Promise<void> {
+    this.isInviting = true;
+    this.usersStatusMessage = '';
+
+    try {
+      await this.firestoreData.addUserInvite({
+        email: this.inviteEmail.trim(),
+        role: this.inviteRole
+      });
+
+      this.inviteEmail = '';
+      this.inviteRole = 'member';
+      this.usersStatusMessage = 'User invite saved. They can be linked to your company during onboarding.';
+    } catch {
+      this.usersStatusMessage = 'Unable to add user. Check Firebase configuration and try again.';
+    } finally {
+      this.isInviting = false;
+    }
+  }
 
   async saveSchedule(): Promise<void> {
     this.isSaving = true;
