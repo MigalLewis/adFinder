@@ -20,12 +20,12 @@ export class RegisterPageComponent {
   readonly isSubmitting = signal(false);
   readonly errorMessage = signal('');
 
-  register(email: string, password: string): void {
+  register(company: string, email: string, password: string): void {
     this.errorMessage.set('');
     this.isSubmitting.set(true);
 
     this.authService
-      .register(email, password)
+      .register(company, email, password)
       .then(() => this.router.navigate(['/dashboard']))
       .catch(() => {
         this.errorMessage.set('Unable to register with these details. Please review and retry.');

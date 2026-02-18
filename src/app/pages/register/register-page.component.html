@@ -22,7 +22,7 @@
       <p class="error">{{ errorMessage() }}</p>
     }
 
-    <button type="button" [disabled]="isSubmitting()" (click)="register(email, password)">
+    <button type="button" [disabled]="isSubmitting() || !company.trim()" (click)="register(company, email, password)">
       {{ isSubmitting() ? 'Creating account...' : 'Create account' }}
     </button>
 
