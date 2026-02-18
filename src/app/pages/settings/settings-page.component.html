@@ -43,8 +43,8 @@
       </div>
 
       <div class="actions">
-        <button type="button" class="primary" [disabled]="isInviting || !inviteEmail.trim()" (click)="addUser()">
-          {{ isInviting ? 'Adding...' : 'Add user' }}
+        <button type="button" class="primary" [disabled]="isInviting() === 'loading' || !inviteEmail.trim()" (click)="addUser()">
+          {{ isInviting() === 'loading' ? 'Adding...' : 'Add user' }}
         </button>
       </div>
 
@@ -112,7 +112,7 @@
 
       <div class="actions">
         <button type="button" class="secondary">Test configuration</button>
-        <button type="button" class="primary" [disabled]="isSaving" (click)="saveSchedule()">{{ isSaving ? 'Saving...' : 'Save schedule' }}</button>
+        <button type="button" class="primary" [disabled]="isSaving() === 'loading'" (click)="saveSchedule()">{{ isSaving() === 'loading' ? 'Saving...' : 'Save schedule' }}</button>
       </div>
       @if (statusMessage) {
         <p class="status-message">{{ statusMessage }}</p>

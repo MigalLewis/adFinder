@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FirestoreDataService } from '../../core/firestore-data.service';
 
@@ -31,6 +31,20 @@ export class DashboardPageComponent {
   detectionScope: 'all' | 'specific' = 'all';
   detectionMessage = '';
 
+  constructor() {
+    effect(() => {
+      const status = this.firestoreData.saveDetectionRunStatus();
+
+      if (status === 'success') {
+        this.detectionMessage = 'Detection request saved to Firestore.';
+      }
+
+      if (status === 'error') {
+        this.detectionMessage = 'Could not save detection request. Check Firebase configuration.';
+      }
+    });
+  }
+
   readonly summaryReports: SummaryReport[] = [
     {
       generatedAt: 'Today, 09:30',
@@ -52,18 +66,13 @@ export class DashboardPageComponent {
     }
   ];
 
-  async runDetection(): Promise<void> {
+  runDetection(): void {
     this.detectionMessage = '';
 
-    try {
-      await this.firestoreData.saveDetectionRun({
-        scope: this.detectionScope,
-        hasReferenceAudio: this.detectionScope === 'specific'
-      });
-      this.detectionMessage = 'Detection request saved to Firestore.';
-    } catch {
-      this.detectionMessage = 'Could not save detection request. Check Firebase configuration.';
-    }
+    this.firestoreData.saveDetectionRun({
+      scope: this.detectionScope,
+      hasReferenceAudio: this.detectionScope === 'specific'
+    });
   }
 
   readonly detectionResults: DetectionPreview[] = [
