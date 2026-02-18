@@ -18,12 +18,12 @@
       <input type="password" placeholder="Create a password" [(ngModel)]="password" name="password" />
     </label>
 
-    @if (errorMessage) {
-      <p class="error">{{ errorMessage }}</p>
+    @if (errorMessage()) {
+      <p class="error">{{ errorMessage() }}</p>
     }
 
-    <button type="button" [disabled]="isSubmitting" (click)="register()">
-      {{ isSubmitting ? 'Creating account...' : 'Create account' }}
+    <button type="button" [disabled]="isSubmitting() || !company.trim()" (click)="register(company, email, password)">
+      {{ isSubmitting() ? 'Creating account...' : 'Create account' }}
     </button>
 
     <a class="alt-link" routerLink="/sign-in">Already have an account? Sign in</a>
