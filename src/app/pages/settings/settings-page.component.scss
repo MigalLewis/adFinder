@@ -30,8 +30,40 @@
   font-size: 0.75rem;
 }
 
+.tab-nav {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.55rem;
+
+  button {
+    border: 1px solid rgba(18, 55, 83, 0.2);
+    background: #fff;
+    color: #123753;
+    border-radius: 0.6rem;
+    padding: 0.55rem 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+
+    &.active {
+      background: #123753;
+      border-color: #123753;
+      color: #eeeff1;
+    }
+  }
+}
+
 .settings-form {
   margin-top: 1rem;
+}
+
+.section-copy {
+  margin: 0.45rem 0 1rem;
+  color: #49677f;
+}
+
+h2 {
+  margin: 0;
+  color: #123753;
 }
 
 .form-grid {
@@ -46,6 +78,10 @@
     font-size: 0.85rem;
     font-weight: 600;
   }
+}
+
+.users-grid {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
 input,
@@ -111,6 +147,11 @@ select {
 @media (max-width: 680px) {
   .settings-shell {
     padding: 1rem;
+  }
+
+  .tab-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
 
   .actions {

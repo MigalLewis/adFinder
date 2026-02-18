@@ -1,97 +1,122 @@
-<section class="settings-shell" aria-label="Scheduled ad finder settings">
+<section class="settings-shell" aria-label="AdFinder settings">
   <header class="settings-header">
-    <p class="eyebrow">Automation Settings</p>
-    <h1>Schedule Ad Finder Jobs</h1>
-    <p>
-      Configure recurring scans across a folder tree so AdFinder automatically processes new recordings,
-      finds known ads, and exports results for your analytics team.
-    </p>
+    <p class="eyebrow">Administration</p>
+    <h1>Settings</h1>
+    <p>Manage users and configure scheduled Ad Finder scans for your company.</p>
   </header>
 
-  <form class="settings-form">
-    <div class="form-grid">
-      <label>
-        Upload/source folder
-        <input type="text" placeholder="/data/recordings/daily-captures" [(ngModel)]="sourceFolder" name="sourceFolder" />
-      </label>
+  <nav class="tab-nav" aria-label="Settings sections">
+    <button
+      type="button"
+      [class.active]="activeTab === 'users'"
+      (click)="setActiveTab('users')"
+    >
+      Users
+    </button>
+    <button
+      type="button"
+      [class.active]="activeTab === 'schedule'"
+      (click)="setActiveTab('schedule')"
+    >
+      Schedule search
+    </button>
+  </nav>
 
-      <label>
-        Output folder for results
-        <input type="text" placeholder="/data/adfinder/results" [(ngModel)]="outputFolder" name="outputFolder" />
-      </label>
+  @if (activeTab === 'users') {
+    <form class="settings-form" aria-label="Add user form">
+      <h2>Add user</h2>
+      <p class="section-copy">Admins can create user entries to join this company.</p>
 
-      <label>
-        Time window rule
-        <select [(ngModel)]="timeWindowRule" name="timeWindowRule">
-          <option>Find related ads within ±5 minutes</option>
-          <option>Strict exact matches only</option>
-          <option>Custom window per job profile</option>
-        </select>
-      </label>
+      <div class="form-grid users-grid">
+        <label>
+          User email
+          <input type="email" placeholder="analyst@analyticsco.com" [(ngModel)]="inviteEmail" name="inviteEmail" />
+        </label>
 
-      <label>
-        Check interval for new files
-        <select [(ngModel)]="checkInterval" name="checkInterval">
-          <option>Every 5 minutes</option>
-          <option>Every 15 minutes</option>
-          <option>Every 30 minutes</option>
-          <option>Hourly</option>
-          <option>Daily</option>
-        </select>
-      </label>
+        <label>
+          Role
+          <select [(ngModel)]="inviteRole" name="inviteRole">
+            <option value="member">Member</option>
+            <option value="admin">Admin</option>
+          </select>
+        </label>
+      </div>
 
-      <label>
-        Job start time
-        <input type="time" value="00:15" />
-      </label>
+      <div class="actions">
+        <button type="button" class="primary" [disabled]="isInviting() === 'loading' || !inviteEmail.trim()" (click)="addUser()">
+          {{ isInviting() === 'loading' ? 'Adding...' : 'Add user' }}
+        </button>
+      </div>
 
-      <label>
-        File patterns to include
-        <input type="text" placeholder="*.mp4, *.wav, *.mxf" />
-      </label>
+      @if (usersStatusMessage) {
+        <p class="status-message">{{ usersStatusMessage }}</p>
+      }
+    </form>
+  }
 
-      <label>
-        Subfolder depth
-        <select>
-          <option>Scan all nested folders</option>
-          <option>Only top-level folder</option>
-          <option>Limit to 2 levels</option>
-          <option>Limit to 3 levels</option>
-        </select>
-      </label>
+  @if (activeTab === 'schedule') {
+    <form class="settings-form" aria-label="Scheduled ad finder settings">
+      <h2>Schedule search</h2>
+      <p class="section-copy">
+        Configure recurring scans across folder trees so AdFinder automatically processes new recordings,
+        finds known ads, and exports results.
+      </p>
 
-      <label>
-        Duplicate handling
-        <select>
-          <option>Skip already processed files</option>
-          <option>Reprocess all files</option>
-          <option>Reprocess only changed files</option>
-        </select>
-      </label>
+      <div class="form-grid">
+        <label>
+          Upload/source folder
+          <input type="text" placeholder="/data/recordings/daily-captures" [(ngModel)]="sourceFolder" name="sourceFolder" />
+        </label>
 
-      <label>
-        Alert email (optional)
-        <input type="email" placeholder="ops-team@analyticsco.com" />
-      </label>
+        <label>
+          Output folder for results
+          <input type="text" placeholder="/data/adfinder/results" [(ngModel)]="outputFolder" name="outputFolder" />
+        </label>
 
-      <label>
-        Max concurrent jobs
-        <input type="number" min="1" max="20" value="4" />
-      </label>
-    </div>
+        <label>
+          Time window rule
+          <select [(ngModel)]="timeWindowRule" name="timeWindowRule">
+            <option>Find related ads within ±5 minutes</option>
+            <option>Strict exact matches only</option>
+            <option>Custom window per job profile</option>
+          </select>
+        </label>
 
-    <div class="toggle-row">
-      <label><input type="checkbox" checked /> Enable scheduled run</label>
-      <label><input type="checkbox" checked /> Generate summary report after each run</label>
-      <label><input type="checkbox" /> Notify on failed processing</label>
-    </div>
+        <label>
+          Check interval for new files
+          <select [(ngModel)]="checkInterval" name="checkInterval">
+            <option>Every 5 minutes</option>
+            <option>Every 15 minutes</option>
+            <option>Every 30 minutes</option>
+            <option>Hourly</option>
+            <option>Daily</option>
+          </select>
+        </label>
 
-    <div class="actions">
-      <button type="button" class="secondary">Test configuration</button>
-      <button type="button" class="primary" [disabled]="isSaving" (click)="saveSchedule()">{{ isSaving ? 'Saving...' : 'Save schedule' }}</button>
-    </div>
-    @if (statusMessage) {
-      <p class="status-message">{{ statusMessage }}</p>
-    }
-  </form>
+        <label>
+          Job start time
+          <input type="time" value="00:15" />
+        </label>
+
+        <label>
+          File patterns to include
+          <input type="text" placeholder="*.mp4, *.wav, *.mxf" />
+        </label>
+      </div>
+
+      <div class="toggle-row">
+        <label><input type="checkbox" checked /> Enable scheduled run</label>
+        <label><input type="checkbox" checked /> Generate summary report after each run</label>
+        <label><input type="checkbox" /> Notify on failed processing</label>
+      </div>
+
+      <div class="actions">
+        <button type="button" class="secondary">Test configuration</button>
+        <button type="button" class="primary" [disabled]="isSaving() === 'loading'" (click)="saveSchedule()">{{ isSaving() === 'loading' ? 'Saving...' : 'Save schedule' }}</button>
+      </div>
+      @if (statusMessage) {
+        <p class="status-message">{{ statusMessage }}</p>
+      }
+    </form>
+  }
 </section>
